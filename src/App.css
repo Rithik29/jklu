@@ -1,0 +1,8 @@
+:root {
+  --bg-color :  "#F6F8FB";
+  --text-color : "#EAEBEC";
+}
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
