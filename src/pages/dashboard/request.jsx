@@ -5,12 +5,14 @@ import { useDropzone } from 'react-dropzone'
 import doctor from '../../assets/doctor.png'
 import axios from 'axios'
 // import './testcss.css'
-const UploadContent = () => {
+const Request = () => {
   const [xlsxFiles, setXLSXFiles] = useState([])
   const [audioFiles, setAudioFiles] = useState([])
   const [imageFiles, setImageFiles] = useState([])
   const [data,setdata] = useState(" ")
   const [id1, setid] = useState("")
+  const [res, setres] = useState("")
+  const [tm, settm] = useState(null)
 
   const handleFileChange = (event, setFiles) => {
     const selectedFiles = event.target.files
@@ -35,41 +37,42 @@ const UploadContent = () => {
     // console.log('Audio Files:', audioFiles)
     // console.log('Image Files:', imageFiles)
 
-    try{
+    // try{
 
-      const temp = {image: imageFiles, id : id1 }
+    //   const temp = {image: imageFiles, id : id1 }
 
-      const resp= await axios.post('http://127.0.0.1:5000/capture', temp)
-      const emotion = resp.data
-      console.log(emotion)
+    //   const resp= await axios.post('http://127.0.0.1:5000/capture', temp)
+    //   const emotion = resp.data
+    //   console.log(emotion)
       
-      const str = JSON.stringify(emotion)
-      //setdata(str)
-      alert(str)
-      console.log(str)
-      if(str === "[1]")
-      {
-        setdata("Predected type  : 1   Further Investigation not Necassary")
-      }
-      else if(str === "[2]")
-      {
-        setdata("Predected type  : 2   Further Investigation are Required")
-      }
-      else if(str ==="[3]")
-      {
-        setdata("Predected type  : 3   Further Investigation are must")
-      }
-      else
-      {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3500)
-        setdata("User Not Registered, Please Register Yourself First , visit your nearest hospital today")
-      }
-    }catch(error)
-    {
-      console.log(error)
-    }
+    //   const str = JSON.stringify(emotion)
+    //   //setdata(str)
+    //   alert(str)
+    //   console.log(str)
+    //   if(str === "[1]")
+    //   {
+    //     setdata("Predected type  : 1   Further Investigation not Necassary")
+    //   }
+    //   else if(str === "[2]")
+    //   {
+    //     setdata("Predected type  : 2   Further Investigation are Required")
+    //   }
+    //   else if(str ==="[3]")
+    //   {
+    //     setdata("Predected type  : 3   Further Investigation are must")
+    //   }
+    //   else
+    //   {
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 3500)
+    //     setdata("User Not Registered, Please Register Yourself First , visit your nearest hospital today")
+    //   }
+    // }catch(error)
+    // {
+    //   console.log(error)
+    // }
+    setdata("Request send you will be notified if user accepts")
     // fetch('/api/uploadImage', { 
     //   method: 'POST',
     //   body: JSON.stringify({ image: capturedImage }),
@@ -134,7 +137,7 @@ const UploadContent = () => {
   return (
     <div className="p-4 flex items-center w-full">
       <div className="space-y-4 w-[60%]">
-        <h1 className="text-4xl text-start">Evaluation Window</h1>
+        <h1 className="text-4xl text-start">Request a meeting with Patient</h1>
 
         <div className="space-y-4">
           <label className="text-xl" htmlFor="patientName">
@@ -163,19 +166,47 @@ const UploadContent = () => {
           />
         </div>
 
-        <FileInput
+        <div className="space-y-4">
+            <label className="text-xl" htmlFor="tm">
+                Preferred Time:
+            </label>
+            <input
+                type="datetime-local"
+                id="tm"
+                className="w-full border border-gray-300 rounded p-2"
+                min={new Date().toISOString().slice(0, 16)}
+                onChange={(e) => settm(e.target.value)}
+            />
+        </div>
+
+
+        <div className="space-y-4">
+            <label className="text-xl" htmlFor="res">
+                Reason for this meeting:
+            </label>
+            <textarea
+                id="res"
+                className="w-full border border-gray-300 rounded p-2"
+                placeholder="Reason..."
+                onChange={(e) => setres(e.target.value)}
+                // Add a state or value prop and onChange handler for patient ID
+            ></textarea>
+        </div>
+
+
+        {/* <FileInput
           accept=".jpg, .jpeg, .png"
           onChange={(e) => handleFileChange(e, imageFiles)}
           files={imageFiles}
           setFiles={setImageFiles}
           label="Upload Results"
-        />
+        /> */}
         <div className="flex items-center justify-center">
           <button
             onClick={handleSubmit}
             className="bg-[#1B263B] text-white px-6 py-2 text-xl text-center rounded  transition duration-300 transform hover:scale-105"
           >
-            Result
+            send
           </button>
         </div>
       </div>
@@ -190,4 +221,4 @@ const UploadContent = () => {
   )
 }
 
-export default UploadContent
+export default Request

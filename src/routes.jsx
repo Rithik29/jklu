@@ -25,6 +25,12 @@ import UserList from './pages/dashboard/User'
 import AdminOrder from './pages/dashboard/AdminOrder'
 import Profile from './pages/dashboard/profile'
 import ExcelUploader from './pages/dashboard/excelUploader'
+import UploadContent from './pages/dashboard/UploadContent'
+import Temp from './pages/dashboard/temp'
+import Heropage from  './dashboard/Hero'
+import Request from './pages/dashboard/request'
+import Req from './pages/dashboard/req'
+
 
 const icon = {
   className: 'w-5 h-5 text-inherit',
@@ -35,29 +41,36 @@ export const routes = [
     layout: 'dashboard',
     pages: [
       {
-        icon: <FaShop {...icon} />,
-        name: 'Connect with',
+        icon: <HomeIcon {...icon} />,
+        name: 'Home',
         path: '/home',
-        element: <ProductList />,
+        element: <Heropage />,
       },
       {
         icon: <FaUpload {...icon} />,
-        name: 'Upload Product',
-        path: '/excel',
-        element: <ExcelUploader />,
+        name: 'Evaluation',
+        path: '/eval',
+        element: <UploadContent />,
       },
 
       {
         icon: <FaUser {...icon} />,
-        name: 'Customers',
-        path: '/users',
+        name: 'Patients',
+        path: '/patients',
         element: <UserList />,
       },
       {
-        icon: <FaCartPlus {...icon} />,
-        name: 'Orders',
-        path: '/order',
-        element: <AdminOrder />,
+        icon: <PlusCircleIcon {...icon} />,
+        name: 'Request a Meeting',
+        path: '/meet',
+        element: <Request />,
+      },
+
+      {
+        icon: <PencilSquareIcon {...icon} />,
+        name: 'Request',
+        path: '/request',
+        element: <Req />,
       },
 
       {
@@ -65,6 +78,12 @@ export const routes = [
         name: 'Profile',
         path: '/Profile',
         element: <Profile />,
+      },
+      {
+        icon: <UserCircleIcon {...icon} />,
+        name: 'PaP Test',
+        path: '/temp',
+        element: <Temp />,
       },
     ],
   },

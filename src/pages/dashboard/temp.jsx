@@ -4,8 +4,9 @@ import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import doctor from '../../assets/doctor.png'
 import axios from 'axios'
+
 // import './testcss.css'
-const UploadContent = () => {
+const Temp = () => {
   const [xlsxFiles, setXLSXFiles] = useState([])
   const [audioFiles, setAudioFiles] = useState([])
   const [imageFiles, setImageFiles] = useState([])
@@ -19,6 +20,7 @@ const UploadContent = () => {
       event.target.value = null // Reset the input field
     }
   }
+
 
   const removeFile = (file, setFiles) => {
     const newFiles = [...setFiles]
@@ -47,17 +49,17 @@ const UploadContent = () => {
       //setdata(str)
       alert(str)
       console.log(str)
-      if(str === "[1]")
+      if(str === "[0]")
       {
-        setdata("Predected type  : 1   Further Investigation not Necassary")
+        setdata("Positive Hopes, Eveything seems to be great ")
       }
-      else if(str === "[2]")
+      else if(str === "[2]" || str === "[1]")
       {
-        setdata("Predected type  : 2   Further Investigation are Required")
+        setdata("Seems fishy , please there are some chances")
       }
-      else if(str ==="[3]")
+      else if(str ==="[3]" || str === "[4]")
       {
-        setdata("Predected type  : 3   Further Investigation are must")
+        setdata("Results are not what they should be, should be handeled with utmost urgency")
       }
       else
       {
@@ -134,7 +136,7 @@ const UploadContent = () => {
   return (
     <div className="p-4 flex items-center w-full">
       <div className="space-y-4 w-[60%]">
-        <h1 className="text-4xl text-start">Evaluation Window</h1>
+        <h1 className="text-3xl text-start">PaP Smear Test Evaluation Window</h1>
 
         <div className="space-y-4">
           <label className="text-xl" htmlFor="patientName">
@@ -143,7 +145,7 @@ const UploadContent = () => {
           <input
             type="text"
             id="patientName"
-            className="w-full border border-gray-300 rounded p-2"
+            className="w-full border border-gray-800 rounded p-3"
             placeholder="Enter patient name"
             // Add a state or value prop and onChange handler for patient name
           />
@@ -156,7 +158,7 @@ const UploadContent = () => {
           <input
             type="text"
             id="patientID"
-            className="w-full border border-gray-300 rounded p-2"
+            className="w-full border border-gray-800 rounded p-3"
             placeholder="Enter patient ID"
             onChange={(e) => setid(e.target.value)}
             // Add a state or value prop and onChange handler for patient ID
@@ -184,10 +186,10 @@ const UploadContent = () => {
         {data}
       </div>
       <div>
-        <img src={doctor} alt="" className="h-[400px]" />
+        <img src='https://img.freepik.com/free-vector/doctors-concept-illustration_114360-1515.jpg?w=1060&t=st=1708212483~exp=1708213083~hmac=d833bf836aa24dfb7f6b732ec69cb3490b68e731780661119c5c29136118f1e8' alt="" className="[700px]" />
       </div>
     </div>
   )
 }
 
-export default UploadContent
+export default Temp
